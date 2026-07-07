@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KantinApplication</string>
+    <string-array name="payment_methods_array">
+        <item>Tunai</item>
+        <item>Transfer</item>
+        <item>QRIS</item>
+    </string-array>
+</resources>
