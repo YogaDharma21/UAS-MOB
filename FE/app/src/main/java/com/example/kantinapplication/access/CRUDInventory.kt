@@ -1,9 +1,9 @@
 package com.example.kantinapplication.access
 
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.kantinapplication.modelsdata.ApiService
 import com.example.kantinapplication.modelsdata.InventoryCallback
 import com.example.kantinapplication.modelsdata.ProductItem
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class CRUDInventory(
                     val body = response.body()
                     body?.let { (status, message, data) ->
                         if (!status) {
-                            data?.let {
+                            data.let {
                                 callback.onLoadInventory(it)
                             }
                         } else {

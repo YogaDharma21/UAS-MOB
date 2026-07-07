@@ -1,5 +1,6 @@
 package com.example.kantinapplication
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -66,13 +67,11 @@ class OrdersFragmentActivity : Fragment(), OrdersCallback,
             }
         )
 
-        // Starts here
         view.findViewById<FloatingActionButton>(R.id.addOrderFloatingActionButton).setOnClickListener {
             val dialog = LayoutInflater.from(context).inflate(R.layout.dialog_add_order, null)
             val builder = AlertDialog.Builder(context).setView(dialog).create()
             val productSpinner = dialog.findViewById<Spinner>(R.id.productSpinner)
             dialog.findViewById<Button>(R.id.orderSaveActionButton).setOnClickListener {
-                // TODO: insert ke database dan tampilkan ke ordersRecyclerView
                 val orderIdEditText = dialog.findViewById<EditText>(R.id.orderIdEditText)
                 val quantityEditText = dialog.findViewById<EditText>(R.id.quantityEditText)
                 val paymentSpinner = dialog.findViewById<Spinner>(R.id.paymentSpinner)
@@ -83,7 +82,7 @@ class OrdersFragmentActivity : Fragment(), OrdersCallback,
                 val metodePembayaran = paymentSpinner.selectedItem.toString()
                 val keterangan = notesEditText.text.toString().trim()
 
-                if (noNota.isEmpty() ||keterangan.isEmpty() || jumlah <= 0) {
+                if (noNota.isEmpty() || jumlah <= 0) {
                     Toast.makeText(
                         requireContext(),
                         "Lengkapi data terlebih dahulu",
@@ -98,7 +97,6 @@ class OrdersFragmentActivity : Fragment(), OrdersCallback,
                     ).show()
 
                 } else {
-
                     val selectedProduct = productData[productSpinner.selectedItemPosition]
                     val idProduk = selectedProduct.idProduk
 
@@ -113,9 +111,6 @@ class OrdersFragmentActivity : Fragment(), OrdersCallback,
                     builder.dismiss()
                 }
             }
-
-            // TODO: populasikan data dari db ke spinner
-            // Example
 
             crudInventory.getAllInventoryForSpinner { products ->
                 productData = products
@@ -136,6 +131,7 @@ class OrdersFragmentActivity : Fragment(), OrdersCallback,
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onLoadOrders(data: List<OrderItem>) {
         orderList.clear()
         orderList.addAll(data)

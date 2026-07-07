@@ -8,4 +8,3 @@ data class ProductItem(
     @SerializedName("harga") val harga: Int,
     @SerializedName("stok") val stok: Int
 )
-

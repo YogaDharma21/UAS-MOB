@@ -19,7 +19,7 @@ class CRUDDashboard(
                     val body = response.body()
                     body?.let { (status, message, data) ->
                         if (!status) {
-                            data?.let {
+                            data.let {
                                 callback.onLoadDashboard(data)
                             }
                         } else {

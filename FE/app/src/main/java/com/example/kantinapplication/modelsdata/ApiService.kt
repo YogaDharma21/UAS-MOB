@@ -1,13 +1,8 @@
-package com.example.kantinapplication.access
+package com.example.kantinapplication.modelsdata
 
-import com.example.kantinapplication.modelsdata.ResponseDashboard
-import com.example.kantinapplication.modelsdata.ResponseKonfirmasi
-import com.example.kantinapplication.modelsdata.ResponseOrder
-import com.example.kantinapplication.modelsdata.ResponseProduct
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {

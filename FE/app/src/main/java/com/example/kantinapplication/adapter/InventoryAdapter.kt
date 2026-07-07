@@ -31,9 +31,9 @@ class InventoryAdapter(
     override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
         val product = productList[position]
         product.let {
-            holder.textName.setText(product.namaProduk)
-            holder.textPrice.setText(product.harga.toString())
-            holder.textStock.setText(product.stok.toString())
+            holder.textName.text = product.namaProduk
+            holder.textPrice.text = product.harga.toString()
+            holder.textStock.text = product.stok.toString()
 
             holder.btnEdit.setOnClickListener {
                 callback.onUpdateData(product)

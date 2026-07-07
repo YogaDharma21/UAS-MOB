@@ -1,13 +1,14 @@
 package com.example.kantinapplication.access
 
 import android.util.Log
+import com.example.kantinapplication.modelsdata.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://periscope-citizen-spiny.ngrok-free.dev/"
+    private const val BASE_URL = "https://apolitical-daniell-ichthyologically.ngrok-free.dev/"
     private val client = OkHttpClient.Builder()
         .addInterceptor { chain ->
             val request = chain.request()

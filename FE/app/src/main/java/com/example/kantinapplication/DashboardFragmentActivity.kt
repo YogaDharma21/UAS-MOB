@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.example.kantinapplication.access.CRUDDashboard
 import com.example.kantinapplication.modelsdata.DashboardCallback
 import com.example.kantinapplication.modelsdata.DashboardItem
+import java.text.NumberFormat
+import java.util.Locale
 
 class DashboardFragmentActivity : Fragment(), DashboardCallback{
     private lateinit var crudDashboard: CRUDDashboard
@@ -42,7 +44,6 @@ class DashboardFragmentActivity : Fragment(), DashboardCallback{
         super.onViewCreated(view, savedInstanceState)
 
         tvPendapatanHariIni = view.findViewById(R.id.netTodayTextView)
-        tvJumlahBarangMauHabis = view.findViewById(R.id.lowstockCountTextView)
 
         tvNamaTerlaris1 = view.findViewById(R.id.topSoldName1TextView)
         tvNamaTerlaris2 = view.findViewById(R.id.topSoldName2TextView)
@@ -51,6 +52,7 @@ class DashboardFragmentActivity : Fragment(), DashboardCallback{
         tvJumlahTerlaris2 = view.findViewById(R.id.topSoldCount2TextView)
         tvJumlahTerlaris3 = view.findViewById(R.id.topSoldCount3TextView)
 
+        tvJumlahBarangMauHabis = view.findViewById(R.id.lowstockCountTextView)
         tvNamaStokMenipis1 = view.findViewById(R.id.lowstockName1TextView)
         tvNamaStokMenipis2 = view.findViewById(R.id.lowStockName2TextView)
         tvQtyStokMenipis1 = view.findViewById(R.id.lowstockQty1TextView)
@@ -64,12 +66,11 @@ class DashboardFragmentActivity : Fragment(), DashboardCallback{
     override fun onLoadDashboard(data: DashboardItem) {
         activity?.runOnUiThread {
             val rupiah =
-                java.text.NumberFormat.getCurrencyInstance(
-                    java.util.Locale("in","ID")
+                NumberFormat.getCurrencyInstance(
+                    Locale.forLanguageTag("id-ID")
                 )
 
-            tvPendapatanHariIni.text =
-                rupiah.format(data.pendapatanHariIni)
+            tvPendapatanHariIni.text = rupiah.format(data.pendapatanHariIni)
 
             if (data.produkTerlaris.isNotEmpty()) {
                 tvNamaTerlaris1.text = data.produkTerlaris.getOrNull(0)?.namaProduk ?: "-"
@@ -83,6 +84,8 @@ class DashboardFragmentActivity : Fragment(), DashboardCallback{
             }
 
             if (data.stokMenipis.isNotEmpty()) {
+                tvJumlahBarangMauHabis.text = data.stokMenipis.size.toString()
+
                 tvNamaStokMenipis1.text = data.stokMenipis.getOrNull(0)?.namaProduk ?: "-"
                 tvQtyStokMenipis1.text = data.stokMenipis.getOrNull(0)?.stok?.toString() ?: "0"
 

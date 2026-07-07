@@ -1,5 +1,6 @@
 package com.example.kantinapplication.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ class OrderAdapter(
         return OrderViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val order = orderList[position]
         order.let {
@@ -39,8 +41,14 @@ class OrderAdapter(
                         "Rp ${order.totalHarga}\n" +
                         order.statusPesanan
 
-            holder.btnDone.setOnClickListener {
-                callback.onUpdateData(order)
+            if (order.statusPesanan == "Selesai") {
+                holder.btnDone.isEnabled = false
+                holder.btnDone.setOnClickListener(null)
+            } else {
+                holder.btnDone.isEnabled = true
+                holder.btnDone.setOnClickListener {
+                    callback.onUpdateData(order)
+                }
             }
         }
     }
