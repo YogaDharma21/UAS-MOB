@@ -15,6 +15,11 @@ http:
       type: query
   auth: inherit
 
+runtime:
+  variables:
+    - name: BACKEND_URL
+      value: http://localhost:8000
+
 settings:
   encodeUrl: true
   timeout: 0

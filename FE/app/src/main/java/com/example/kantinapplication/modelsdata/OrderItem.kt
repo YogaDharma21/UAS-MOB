@@ -2,7 +2,7 @@ package com.example.kantinapplication.modelsdata
 
 import com.google.gson.annotations.SerializedName
 
-data class OrdersItem(
+data class OrderItem(
     @SerializedName("id_transaksi") val idTransaksi: Int,
     @SerializedName("no_nota") val noNota: String,
     @SerializedName("tanggal") val tanggal: String,

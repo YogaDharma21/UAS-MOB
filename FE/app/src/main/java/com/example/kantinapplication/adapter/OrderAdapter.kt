@@ -19,11 +19,9 @@ class OrderAdapter(
     }
 
     class OrderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         val textNota: TextView = view.findViewById(R.id.orderIdTextView)
         val textDetail: TextView = view.findViewById(R.id.orderDetailsTextView)
         val btnDone: Button = view.findViewById(R.id.markdoneActionButton)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -33,13 +31,9 @@ class OrderAdapter(
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-
         val order = orderList[position]
-
         order.let {
-
             holder.textNota.text = order.noNota
-
             holder.textDetail.text =
                 "${order.jumlahKeluar}x ${order.namaProduk}\n" +
                         "Rp ${order.totalHarga}\n" +

@@ -1,3 +1,14 @@
 package com.example.kantinapplication.modelsdata
 
-data class ResponseDashboard()
+import com.google.gson.annotations.SerializedName
+
+data class ResponseDashboard(
+    @SerializedName("error")
+    val status: Boolean,
+
+    @SerializedName("message")
+    val message: String,
+
+    @SerializedName("data")
+    val data: DashboardItem
+)

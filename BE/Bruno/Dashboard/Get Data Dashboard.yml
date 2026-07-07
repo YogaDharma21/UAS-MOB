@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{BACKEND_URL}}/index.php?resource=dashboard&apicall=loadData"
+  url: http://localhost:8000/index.php?resource=dashboard&apicall=loadData
   params:
     - name: resource
       value: dashboard
@@ -14,6 +14,11 @@ http:
       value: loadData
       type: query
   auth: inherit
+
+runtime:
+  variables:
+    - name: BACKEND_URL
+      value: http://localhost:8000
 
 settings:
   encodeUrl: true
